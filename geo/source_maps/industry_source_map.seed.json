@@ -1,0 +1,56 @@
+{
+  "version": "0.1.0",
+  "industries": {
+    "real_estate": {
+      "excluded_executable_platforms": [
+        "ctrip_travel"
+      ],
+      "source_platforms": [
+        "official_site",
+        "map",
+        "government_public_info",
+        "anjuke",
+        "fangtianxia",
+        "beike",
+        "leju"
+      ],
+      "distribution_candidates": [
+        "website",
+        "zhihu",
+        "baijiahao",
+        "toutiao",
+        "sohu",
+        "xiaohongshu",
+        "douyin"
+      ],
+      "pending_integrations": [
+        "anjuke",
+        "fangtianxia",
+        "beike",
+        "leju"
+      ]
+    },
+    "hotel_local_life": {
+      "source_platforms": [
+        "official_site",
+        "map",
+        "ctrip",
+        "meituan_dianping",
+        "trip",
+        "booking",
+        "agoda"
+      ],
+      "distribution_candidates": [
+        "ctrip_travel",
+        "website",
+        "xiaohongshu",
+        "douyin",
+        "zhihu",
+        "toutiao",
+        "sohu",
+        "baijiahao"
+      ]
+    }
+  }
+}
+

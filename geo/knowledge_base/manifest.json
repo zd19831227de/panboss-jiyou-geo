@@ -1,0 +1,21 @@
+{
+  "name": "geo_ops_knowledge_base",
+  "version": "0.1.0",
+  "resource_scope": "project_embedded",
+  "packaging_required": true,
+  "description": "Project-local GEO knowledge base resources. This directory must be packaged with the app.",
+  "resources": {
+    "brand_facts": [],
+    "evidence_sources": [],
+    "question_matrix": [],
+    "citation_diagnostics": []
+  },
+  "forbidden": [
+    "passwords",
+    "tokens",
+    "cookies",
+    "browser_profiles",
+    "env_files"
+  ]
+}
+

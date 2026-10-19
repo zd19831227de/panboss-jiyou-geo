@@ -1,0 +1,40 @@
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+*.db
+*.sqlite
+*.sqlite3
+*.db-shm
+*.db-wal
+frontend/dist/
+frontend/node_modules/
+backend/.venv/
+.venv/
+.playwright-cli/
+output/
+*.log
+__pycache__/
+.pytest_cache/
+.DS_Store
+backend/.secret_key
+.secret_key
+# 临时文件（令牌、调试输出、中间数据）
+*_tmp.txt
+*_tmp.json
+geo_token_tmp.txt
+auto_gap_tmp.json
+
+# 自包含运行时（捆绑 Python 与运行数据，随文件夹迁移、不进 git）
+runtime/
+runtime-data/
+
+# GEO 知识库运行时资源（系统会把真实客户品牌事实/证据源写入这些文件）。
+# 保留 manifest.json 作为模板；缺失的资源文件由
+# backend/app/services/geo_knowledge_base.py:ensure_knowledge_files() 自动创建。
+geo/knowledge_base/*.json
+!geo/knowledge_base/manifest.json
+geo/knowledge_base/*.tmp
+geo/knowledge_base/.*.lock

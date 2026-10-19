@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GEO运营系统 使用攻略</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --ink: #162033;
+      --muted: #667085;
+      --line: #d9e2ef;
+      --blue: #1f5eff;
+      --green: #0b8f5a;
+      --orange: #c96d1b;
+      --red: #bf2f2f;
+      --soft-blue: #e8f0ff;
+      --soft-green: #e7f6ef;
+      --soft-orange: #fff1df;
+      --soft-red: #ffeded;
+      --shadow: 0 10px 28px rgba(15, 35, 70, .08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.55;
+    }
+    a { color: inherit; text-decoration: none; }
+    .layout {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      min-height: 100vh;
+    }
+    .side {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 22px 18px;
+      border-right: 1px solid var(--line);
+      background: #fff;
+      overflow: auto;
+    }
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .logo {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      color: #fff;
+      background: var(--blue);
+      font-weight: 800;
+    }
+    .brand h1 {
+      margin: 0;
+      font-size: 17px;
+      letter-spacing: 0;
+    }
+    .brand p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .nav {
+      display: grid;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .nav a {
+      display: block;
+      padding: 9px 10px;
+      border-radius: 7px;
+      color: #344054;
+      font-size: 14px;
+    }
+    .nav a:hover { background: var(--soft-blue); color: var(--blue); }
+    .main {
+      padding: 26px;
+      max-width: 1180px;
+      width: 100%;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(320px, .8fr);
+      gap: 22px;
+      align-items: stretch;
+      margin-bottom: 22px;
+    }
+    .hero-copy,
+    .quick-card,
+    .section,
+    .flow-step,
+    .page-card,
+    .callout {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+    .hero-copy { padding: 30px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 9px;
+      border-radius: 6px;
+      background: var(--soft-green);
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .hero h2 {
+      margin: 18px 0 10px;
+      font-size: 34px;
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+    .quick-card { padding: 22px; }
+    .quick-card h3,
+    .section h3 {
+      margin: 0 0 14px;
+      font-size: 20px;
+      letter-spacing: 0;
+    }
+    .cmd {
+      display: block;
+      margin: 10px 0;
+      padding: 12px;
+      border: 1px solid #25324b;
+      border-radius: 7px;
+      background: #101828;
+      color: #f2f4f7;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .tag {
+      padding: 5px 8px;
+      border-radius: 6px;
+      background: #eef2f6;
+      color: #344054;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .section {
+      margin: 18px 0;
+      padding: 24px;
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .num {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: var(--soft-blue);
+      color: var(--blue);
+      font-weight: 800;
+    }
+    .section-title h2 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .page-card {
+      padding: 16px;
+      box-shadow: none;
+    }
+    .page-card h4 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+    .page-card p,
+    .page-card li {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .page-card ul { margin: 10px 0 0; padding-left: 18px; }
+    .screen {
+      margin: 12px 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f8fafc;
+      overflow: hidden;
+    }
+    .screen-bar {
+      display: flex;
+      gap: 6px;
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      background: #eef2f7;
+    }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: #98a2b3; }
+    .fake-ui {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      min-height: 140px;
+    }
+    .fake-menu {
+      padding: 10px;
+      border-right: 1px solid var(--line);
+      background: #fff;
+    }
+    .fake-menu div {
+      height: 20px;
+      margin: 7px 0;
+      border-radius: 5px;
+      background: #e4e9f2;
+    }
+    .fake-menu div.active { background: var(--blue); }
+    .fake-content { padding: 12px; }
+    .fake-line {
+      height: 12px;
+      margin: 9px 0;
+      border-radius: 4px;
+      background: #dbe4f0;
+    }
+    .fake-line.short { width: 45%; }
+    .fake-line.mid { width: 70%; }
+    .fake-button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      color: #fff;
+      background: var(--blue);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .steps {
+      display: grid;
+      gap: 12px;
+      counter-reset: item;
+    }
+    .flow-step {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 12px;
+      padding: 15px;
+      box-shadow: none;
+    }
+    .bubble {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--soft-blue);
+      color: var(--blue);
+      font-weight: 800;
+    }
+    .flow-step h4 { margin: 0 0 4px; font-size: 16px; }
+    .flow-step p { margin: 0; color: var(--muted); font-size: 14px; }
+    .callout {
+      margin: 14px 0;
+      padding: 14px 16px;
+      box-shadow: none;
+      border-left: 5px solid var(--blue);
+    }
+    .callout.ok { border-left-color: var(--green); background: var(--soft-green); }
+    .callout.warn { border-left-color: var(--orange); background: var(--soft-orange); }
+    .callout.danger { border-left-color: var(--red); background: var(--soft-red); }
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    .table th,
+    .table td {
+      padding: 10px;
+      border: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+    .table th { background: #f2f5fa; }
+    .footer {
+      margin: 24px 0 10px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+    @media (max-width: 920px) {
+      .layout { grid-template-columns: 1fr; }
+      .side { position: relative; height: auto; }
+      .hero { grid-template-columns: 1fr; }
+      .grid, .grid.two { grid-template-columns: 1fr; }
+      .main { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="side">
+      <div class="brand">
+        <div class="logo">GEO</div>
+        <div>
+          <h1>GEO运营系统</h1>
+          <p>傻瓜式图文操作手册</p>
+        </div>
+      </div>
+      <nav>
+        <ul class="nav">
+          <li><a href="#start">1. 打开系统</a></li>
+          <li><a href="#windows">2. Windows试装</a></li>
+          <li><a href="#recovery">3. 重启恢复</a></li>
+          <li><a href="#settings">4. 系统设置</a></li>
+          <li><a href="#brand">5. 品牌管理</a></li>
+          <li><a href="#keywords">6. 关键词库</a></li>
+          <li><a href="#monitor">7. AI监测中心</a></li>
+          <li><a href="#dashboard">8. 数据中心</a></li>
+          <li><a href="#command">9. 运营大屏</a></li>
+          <li><a href="#operations">10. 运营中台</a></li>
+          <li><a href="#publish">11. 发布闭环</a></li>
+          <li><a href="#faq">12. 常见问题</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">先会用，再看数据</span>
+          <h2>一条品牌从建档到监测、内容、发布、成绩单的完整攻略</h2>
+          <p>本手册面向实际使用者，不讲技术细节。按页面顺序操作，每一步只看该点哪里、填什么、结果怎么看。</p>
+          <div class="tag-row">
+            <span class="tag">品牌管理</span>
+            <span class="tag">关键词库</span>
+            <span class="tag">AI监测</span>
+            <span class="tag">数据中心</span>
+            <span class="tag">运营中台</span>
+          </div>
+        </div>
+        <div class="quick-card" id="start">
+          <h3>最快打开方式</h3>
+          <p>macOS 推荐：直接双击项目文件夹里的：</p>
+          <code class="cmd">启动GEO运营系统.command</code>
+          <p>需要停止系统时，双击：</p>
+          <code class="cmd">停止GEO运营系统.command</code>
+          <p>Windows 试装时，双击：</p>
+          <code class="cmd">启动GEO运营系统.bat</code>
+          <p>如果双击打不开，再用终端复制这两行：</p>
+          <code class="cmd">cd /path/to/GEO运营系统
+python3 start_services.py</code>
+          <p>然后打开网页：</p>
+          <code class="cmd">http://localhost:5173</code>
+          <p>登录账号：</p>
+          <code class="cmd">admin / admin123</code>
+          <div class="callout warn">当前版本已经补了 Windows 启动器和桌面壳骨架，但 Windows 还属于技术试装阶段，不算正式商业交付验收。</div>
+        </div>
+      </section>
+
+      <section class="section" id="windows">
+        <div class="section-title">
+          <div class="num">2</div>
+          <h2>Windows试装：现在能测什么，不能测什么</h2>
+        </div>
+        <div class="grid two">
+          <div class="page-card">
+            <h4>现在可以测试</h4>
+            <ul>
+              <li>项目能不能解压。</li>
+              <li>`启动GEO运营系统.bat` 能不能启动。</li>
+              <li>前端 5173 和 API 8770 能不能打开。</li>
+              <li>证据目录、日志目录能不能自动生成。</li>
+              <li>Chrome 或 Edge 路径能不能识别。</li>
+            </ul>
+          </div>
+          <div class="page-card">
+            <h4>现在不要直接当正式交付</h4>
+            <ul>
+              <li>Windows 端还没做全平台真机发布闭环验收。</li>
+              <li>桌面壳 `desktop-shell/` 只是骨架，不是最终安装包。</li>
+              <li>复制到 Windows 后先做技术试装，再做商业验收。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout ok">压缩包里如果看到 `__MACOSX`，那不是项目本体，可以删。真正项目目录是 `GEO运营系统`。</div>
+        <div class="callout warn">Windows 现在是技术试装，不是正式商用封装版。桌面壳 `desktop-shell/` 只是后续封装骨架。</div>
+      </section>
+
+      <section class="section" id="recovery">
+        <div class="section-title">
+          <div class="num">3</div>
+          <h2>电脑重启后怎么恢复</h2>
+        </div>
+        <div class="steps">
+          <div class="flow-step"><div class="bubble">1</div><div><h4>启动系统</h4><p>终端运行 `python3 start_services.py`，看到前端 5173 和 API 8770 都正常。</p></div></div>
+          <div class="flow-step"><div class="bubble">2</div><div><h4>打开网页</h4><p>浏览器进入 `http://localhost:5173`，用 `admin / admin123` 登录。</p></div></div>
+          <div class="flow-step"><div class="bubble">3</div><div><h4>检查三平台</h4><p>进入“系统设置”，豆包、千问、元宝如果不可用，点“打开登录”。</p></div></div>
+          <div class="flow-step"><div class="bubble">4</div><div><h4>运行自检</h4><p>三个平台分别点“运行自检”。自检有回答和截图，才算能做真实监测。</p></div></div>
+        </div>
+        <div class="callout warn">重启会关闭浏览器进程，但不会删除登录态。平台要求验证码时，需要人工处理。</div>
+        <div class="callout ok">当前运行目录、日志目录、证据目录已改成跨平台口径。新日志默认写入系统用户目录，不再强依赖旧 `/tmp` 目录。</div>
+        <div class="callout ok">浏览器登录态会优先复用旧 `~/.geo-ops-browser`，升级版本后不会自动清空原来的登录状态。</div>
+      </section>
+
+      <section class="section" id="settings">
+        <div class="section-title">
+          <div class="num">4</div>
+          <h2>系统设置：先看系统能不能跑</h2>
+        </div>
+        <div class="grid two">
+          <div class="page-card">
+            <h4>你要看什么</h4>
+            <ul>
+              <li>后端状态：必须运行中。</li>
+              <li>Worker 状态：必须运行中。</li>
+              <li>验证码服务：Capsolver 是否已配置。</li>
+              <li>豆包、千问、元宝：是否可用。</li>
+            </ul>
+          </div>
+          <div class="page-card">
+            <h4>你要点什么</h4>
+            <ul>
+              <li>“刷新状态”：重新读取真实状态。</li>
+              <li>“打开登录”：打开固定浏览器登录平台。</li>
+              <li>“运行自检”：验证平台能否真实提问并返回结果。</li>
+              <li>“运行每日扫描/全量扫描”：提交真实监测任务。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid two">
+          <div class="page-card">
+            <h4>AI 监测端口</h4>
+            <p>豆包 9321，千问 9322，元宝 9323。</p>
+          </div>
+          <div class="page-card">
+            <h4>发布端口</h4>
+            <p>website 9521，携程 9522，百家号 9523，搜狐 9524，知乎 9525，小红书 9526，抖音 9527，头条 9528。</p>
+          </div>
+        </div>
+        <div class="screen">
+          <div class="screen-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="fake-ui">
+            <div class="fake-menu"><div></div><div></div><div class="active"></div><div></div></div>
+            <div class="fake-content">
+              <div class="fake-line short"></div>
+              <div class="fake-line mid"></div>
+              <span class="fake-button">运行自检</span>
+            </div>
+          </div>
+        </div>
+        <div class="callout ok">系统设置是第一站。这里不通过，后面的监测和发布都不要开始。</div>
+        <div class="callout warn">豆包、千问、元宝的登录态目录会复用旧目录。升级版本后不会自动清空原来的浏览器登录态。</div>
+      </section>
+
+      <section class="section" id="brand">
+        <div class="section-title">
+          <div class="num">5</div>
+          <h2>品牌管理：先把品牌建好</h2>
+        </div>
+        <div class="grid">
+          <div class="page-card">
+            <h4>用途</h4>
+            <p>品牌是所有监测和运营动作的主档案。没有品牌，关键词、监测、内容和成绩单都无法形成闭环。</p>
+          </div>
+          <div class="page-card">
+            <h4>怎么用</h4>
+            <p>点“新增品牌”，填品牌名、官网、自有域名、竞品、简介，保存后确认列表出现。</p>
+          </div>
+          <div class="page-card">
+            <h4>怎么验真</h4>
+            <p>保存后刷新页面仍存在，才算真实写库。后续关键词选择时能选到该品牌。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="keywords">
+        <div class="section-title">
+          <div class="num">6</div>
+          <h2>关键词库：用户会怎么问 AI</h2>
+        </div>
+        <table class="table">
+          <thead><tr><th>分类</th><th>意思</th><th>例子</th></tr></thead>
+          <tbody>
+            <tr><td>品牌词</td><td>直接包含品牌名或酒店名</td><td>某某国际大酒店</td></tr>
+            <tr><td>产品词</td><td>具体房型、服务、卖点</td><td>江景房、亲子房、早餐、停车</td></tr>
+            <tr><td>行业词</td><td>行业通用搜索需求</td><td>城市酒店推荐、商圈住宿</td></tr>
+            <tr><td>长尾词</td><td>更像真实用户提问</td><td>市中心步行街附近适合情侣住的高层景观酒店</td></tr>
+          </tbody>
+        </table>
+        <div class="grid two">
+          <div class="page-card">
+            <h4>AI 状态怎么看</h4>
+            <ul>
+              <li>已验证引用：AI 提到品牌，并且有来源链接。</li>
+              <li>未验证引用：AI 提到品牌，但没有来源链接。</li>
+              <li>未引用：AI 没提到品牌。</li>
+              <li>待监测：还没跑过。</li>
+            </ul>
+          </div>
+          <div class="page-card">
+            <h4>搜索按钮做什么</h4>
+            <p>按品牌、分类、AI 状态筛选关键词。它不等于跑 AI 检测，只是查关键词库。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="monitor">
+        <div class="section-title">
+          <div class="num">7</div>
+          <h2>AI监测中心：跑真实检测</h2>
+        </div>
+        <div class="steps">
+          <div class="flow-step"><div class="bubble">1</div><div><h4>选择品牌</h4><p>先选你要检测的品牌。</p></div></div>
+          <div class="flow-step"><div class="bubble">2</div><div><h4>选择关键词</h4><p>勾选一个或多个关键词。</p></div></div>
+          <div class="flow-step"><div class="bubble">3</div><div><h4>选择平台</h4><p>豆包、千问、元宝，或 AI 三平台一起跑。</p></div></div>
+          <div class="flow-step"><div class="bubble">4</div><div><h4>提交任务</h4><p>等待任务完成，再查看回答、截图、来源链接和失败原因。</p></div></div>
+        </div>
+        <div class="callout danger">没有来源链接的“提到品牌”不能算已验证引用，只能算未验证引用。</div>
+      </section>
+
+      <section class="section" id="dashboard">
+        <div class="section-title">
+          <div class="num">8</div>
+          <h2>数据中心：看结果是否有证据</h2>
+        </div>
+        <div class="grid">
+          <div class="page-card"><h4>日/周/月</h4><p>切换不同时间范围，看趋势变化。没有新增数据时应显示无变化。</p></div>
+          <div class="page-card"><h4>品牌筛选</h4><p>只看某一个品牌的数据，适合单客户汇报。</p></div>
+          <div class="page-card"><h4>证据完整率</h4><p>重点看来源链接、截图、原始回答是否齐全。</p></div>
+        </div>
+      </section>
+
+      <section class="section" id="command">
+        <div class="section-title">
+          <div class="num">9</div>
+          <h2>运营大屏：给老板看整体状态</h2>
+        </div>
+        <div class="grid">
+          <div class="page-card"><h4>监测概览</h4><p>看总监测数、引用数、验证引用数、失败数。</p></div>
+          <div class="page-card"><h4>平台状态</h4><p>看豆包、千问、元宝是否正常。</p></div>
+          <div class="page-card"><h4>来源生态</h4><p>看 AI 更常引用哪些网站，再反推内容发布方向。</p></div>
+        </div>
+      </section>
+
+      <section class="section" id="operations">
+        <div class="section-title">
+          <div class="num">10</div>
+          <h2>运营中台：从监测到内容生产</h2>
+        </div>
+        <div class="steps">
+          <div class="flow-step"><div class="bubble">1</div><div><h4>生成运营关键词</h4><p>根据品牌资料生成用户会问的问题。</p></div></div>
+          <div class="flow-step"><div class="bubble">2</div><div><h4>采纳为关键词</h4><p>把有价值的问题加入关键词库。</p></div></div>
+          <div class="flow-step"><div class="bubble">3</div><div><h4>生成内容</h4><p>系统产出内容草稿，不代表成品，必须人工审核。</p></div></div>
+          <div class="flow-step"><div class="bubble">4</div><div><h4>上传图片素材</h4><p>图文平台必须有真实图片。携程、知乎等平台会校验封面或正文图片。</p></div></div>
+          <div class="flow-step"><div class="bubble">5</div><div><h4>质量检查和审核</h4><p>审核通过后，才能进入发布任务。正文不能带 URL 链接，图文内容建议保留自然 emoji 和正常排版。</p></div></div>
+          <div class="flow-step"><div class="bubble">6</div><div><h4>创建发布任务</h4><p>选择已绑定账号的平台，点击“建发布任务”，再运行 RPA 草稿填充。</p></div></div>
+        </div>
+        <div class="callout warn">当前内容生产页面的产出是运营草稿，不是无需审稿的最终成品。真正发布前必须人工复核平台规范、字数、图片尺寸和违规词。</div>
+      </section>
+
+      <section class="section" id="publish">
+        <div class="section-title">
+          <div class="num">11</div>
+          <h2>发布闭环：系统辅助，人工确认</h2>
+        </div>
+        <table class="table">
+          <thead><tr><th>平台</th><th>当前状态</th><th>用户要做什么</th></tr></thead>
+          <tbody>
+            <tr><td>官网/落地页</td><td>已接入</td><td>生成页面后人工上线，回填 URL。</td></tr>
+            <tr><td>知乎</td><td>已闭环</td><td>人工登录账号，系统填标题、正文和封面。发布后系统回捞知乎公开 URL，并验真截图、HTML、摘要。</td></tr>
+            <tr><td>携程旅拍</td><td>已闭环</td><td>系统打开携程内容中心，RPA 填标题、正文、图片、时间、地点、声明。人工点发布，审核通过后用携程 C 端公开 URL 验真。</td></tr>
+            <tr><td>头条 / 搜狐 / 小红书</td><td>已有闭环样本</td><td>系统已有真实闭环样本和三件套，但仍建议每次按真实页面复核。</td></tr>
+            <tr><td>抖音</td><td>有历史样本，当前需重做</td><td>历史任务 339 已如实降级失败，不再冒充通过。后续需重新发一条新任务再闭环。</td></tr>
+            <tr><td>百家号</td><td>可做草稿和工作流测试</td><td>工作流门已通过，但 Windows 端和正式生产还要继续做真机验收。</td></tr>
+            <tr><td>公众号/西瓜/企鹅</td><td>禁用</td><td>当前不作为优先平台。</td></tr>
+          </tbody>
+        </table>
+        <div class="steps">
+          <div class="flow-step"><div class="bubble">1</div><div><h4>运行 RPA</h4><p>系统只负责打开固定浏览器、进入固定发布页、填草稿和保存证据。</p></div></div>
+          <div class="flow-step"><div class="bubble">2</div><div><h4>人工最终发布</h4><p>外部平台最后的“发布”按钮由人工确认，避免误发、封号和平台风控。</p></div></div>
+          <div class="flow-step"><div class="bubble">3</div><div><h4>回捞公开 URL</h4><p>知乎用公开文章页验真；携程旅拍用携程 C 端公开详情页验真，不用内容中心后台详情页冒充。</p></div></div>
+          <div class="flow-step"><div class="bubble">4</div><div><h4>三件套验真</h4><p>必须同时有公开 URL、截图证据、HTML 原始证据、摘要证据，任务才会变成 published。</p></div></div>
+        </div>
+        <div class="callout warn">系统不会伪装发布成功。没有公开 URL 或三件套不完整，就不会计入发布闭环。</div>
+        <div class="callout ok">携程旅拍示例：内容中心显示已发布后，要去携程 C 端页面验真，例如 `https://m.ctrip.com/webapp/you/community/detail?articleId=作品ID`。</div>
+        <div class="callout warn">抖音当前不能沿用历史 task339 当成功案例。它已被降级为失败记录，后续必须重新发新任务、重新回捞 URL、重新生成三件套。</div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="section-title">
+          <div class="num">12</div>
+          <h2>常见问题</h2>
+        </div>
+        <div class="grid two">
+          <div class="page-card"><h4>网页打不开</h4><p>先运行 `python3 start_services.py status`。如果 5173/8770 未运行，重新启动系统。</p></div>
+          <div class="page-card"><h4>后端离线</h4><p>终端运行 `python3 start_services.py`，再刷新系统设置。</p></div>
+          <div class="page-card"><h4>AI 没结果</h4><p>先去系统设置，检查平台登录态和运行自检。</p></div>
+          <div class="page-card"><h4>没有引用链接</h4><p>不能算已验证引用，只能算未验证引用。</p></div>
+          <div class="page-card"><h4>发布按钮不能点</h4><p>检查内容是否审核、平台是否 tested/active、账号是否绑定。</p></div>
+          <div class="page-card"><h4>携程已发布但没闭环</h4><p>内容中心后台详情只能证明已发布。必须找到携程 C 端公开页，系统验真通过后才算闭环。</p></div>
+          <div class="page-card"><h4>证据打开是空白</h4><p>优先看 API 端口 `http://localhost:8770/artifacts/...`。前端 5173 只负责页面展示。</p></div>
+          <div class="page-card"><h4>终端不能粘贴</h4><p>运行 `source ~/.zshrc`，或者重新打开终端。</p></div>
+          <div class="page-card"><h4>复制到 Windows 后能不能直接商用</h4><p>不能直接下结论。当前只适合先做技术试装：能启动、能打开、能识别浏览器、能生成日志和证据目录。</p></div>
+          <div class="page-card"><h4>移动硬盘解压后多了 __MACOSX</h4><p>这是 mac 压缩包附带目录，不是项目本体，可以删。</p></div>
+          <div class="page-card"><h4>移动硬盘复制不了</h4><p>如果硬盘是 NTFS，mac 多数情况只能读不能写。换 exFAT，或先复制到本机再转存。</p></div>
+          <div class="page-card"><h4>为什么会有两个端口</h4><p>5173 是前端页面，8770 是本地 API。前端所有按钮、数据、证据文件都要通过 8770 调用。</p></div>
+        </div>
+      </section>
+
+      <p class="footer">本手册已同步到 2026-06-29 最新项目口径。技术审计看 `THIRD_PARTY_AUDIT_HANDOFF.md`，详细运维看 `USER_OPERATION_MANUAL.md`，封装现状看 `PACKAGING_AUDIT_AND_PLAN_20260629.md`。</p>
+    </main>
+  </div>
+</body>
+</html>
